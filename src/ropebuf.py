@@ -85,11 +85,11 @@ def _join(left, right):
     counter.Counter.bump(1)
     if left.height > right.height + 2:
         joined = _join(left.right, right)
-        return _rotate_right(_Branch(left.left, joined))
+        return _rebalance(left.left, joined)
 
     if right.height > left.height + 2:
         joined = _join(left, right.left)
-        return _rotate_left(_Branch(joined, right.right))
+        return _rebalance(joined, right.right)
 
     return _rebalance(left, right)
 
